@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAHARASHTRA STATE BOARD OF SECONDARY AND HIGHER SECONDARY EDUCATION, PUNE</title>
+    <style>
+        body { font-family: Verdana, sans-serif; margin: 0; background-color: #f7f7f7; color: #333; }
+        .top-banner { background-color: #fffde7; padding: 10px; text-align: center; border-bottom: 1px solid #ccc; }
+        .top-banner img { height: 80px; vertical-align: middle; }
+        .header-title { background-color: #003366; color: white; padding: 10px; text-align: center; font-weight: bold; font-size: 16px; border-bottom: 5px solid #ff9933; text-transform: uppercase; }
+        .sub-header { text-align: center; font-weight: bold; margin: 15px 0; font-size: 15px; color: #003366; }
+        
+        .container { width: 95%; max-width: 700px; margin: 10px auto; background: white; padding: 20px; border: 1px solid #ddd; }
+        .input-row { margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
+        .input-row label { width: 180px; font-size: 13px; font-weight: bold; }
+        .input-row input { padding: 5px; border: 1px solid #777; width: 200px; }
+        
+        .btn-row { text-align: center; padding: 15px; }
+        .btn-view { background-color: #003366; color: white; border: 1px solid #000; padding: 5px 15px; cursor: pointer; font-size: 13px; font-weight: bold; margin-right: 5px; }
+        .btn-reset { background-color: #e0e0e0; color: black; border: 1px solid #777; padding: 5px 15px; cursor: pointer; font-size: 13px; }
+
+        #resultArea { display: none; }
+        .details-table, .marks-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px; }
+        .details-table td { padding: 8px; border: none; }
+        .marks-table th, .marks-table td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        .marks-table th { background-color: #f2f2f2; text-align: center; }
+        .total-row { background-color: #e8f5e9; font-weight: bold; }
+        .result-status { background-color: #e8f5e9; border: 1px solid #ccc; padding: 10px; text-align: center; font-weight: bold; font-size: 16px; color: #1b5e20; }
+        
+        .disclaimer { font-size: 11px; color: #444; border: 1px solid #ccc; padding: 10px; margin-top: 20px; text-align: justify; line-height: 1.4; }
+        @media print { .btn-row, .top-banner { display: none; } }
+    </style>
+</head>
+<body>
+
+<div class="top-banner">
+    <img src="https://mahahsscboard.maharashtra.gov.in/hsc_marksheet/images/logo.png" alt="Board Logo">
+    <div style="font-weight: bold; margin-top: 5px; font-size: 18px;">MAHARASHTRA STATE BOARD OF SECONDARY &<br>HIGHER SECONDARY EDUCATION, PUNE</div>
+</div>
+
+<div class="header-title">HSC EXAMINATION MARCH - 2026 RESULT</div>
+
+<div class="container" id="inputSection">
+    <div class="sub-header">Enter Examination Details</div>
+    <div class="input-row">
+        <label>Seat Number :</label>
+        <input type="text" id="seatNo" maxlength="7">
+    </div>
+    <div class="input-row">
+        <label>Mother's First Name :</label>
+        <input type="text" id="mName">
+    </div>
+    <div class="btn-row">
+        <button class="btn-view" onclick="processResult()">View Result</button>
+        <button class="btn-reset" onclick="location.reload()">Reset</button>
+    </div>
+</div>
+
+<div class="container" id="resultArea">
+    <table class="details-table">
+        <tr><td width="30%"><b>Name :</b></td><td><b>VISHAL VILAS VARADE</b></td></tr>
+        <tr><td><b>Seat Number :</b></td><td id="dispSeat"></td></tr>
+        <tr><td><b>Division :</b></td><td><b>PUNE</b></td></tr>
+    </table>
+
+    <table class="marks-table">
+        <tr>
+            <th>Subject Code</th>
+            <th>Subject Name</th>
+            <th>Marks Obtained</th>
+        </tr>
+        <tr><td align="center">01</td><td>ENGLISH</td><td align="center">072</td></tr>
+        <tr><td align="center">04</td><td>HINDI</td><td align="center">070</td></tr>
+        <tr><td align="center">40</td><td>MATHS & STATISTICS</td><td align="center">066</td></tr>
+        <tr><td align="center">54</td><td>PHYSICS</td><td align="center">068</td></tr>
+        <tr><td align="center">55</td><td>CHEMISTRY</td><td align="center">065</td></tr>
+        <tr><td align="center">97</td><td>INFORMATION TECHNOLOGY</td><td align="center">078.52</td></tr>
+        <tr class="total-row">
+            <td colspan="2" align="right">Total Marks :</td>
+            <td align="center">419.52 / 600</td>
+        </tr>
+    </table>
+
+    <div class="result-status">RESULT: PASS (69.92%)</div>
+
+    <div class="disclaimer">
+        <b>Disclaimer :</b> Neither Talisma nor Maharashtra State Board of Secondary and Higher Secondary Education, Pune is responsible for any inadvertent error that may have crept in the results being published online. The results published on net are for immediate information only. These cannot be treated as original statement of marks. Please verify the information from original statement of marks issued by the Board.
+    </div>
+    <center><button class="btn-view" style="margin-top:20px; background:#444;" onclick="window.print()">Print Result</button></center>
+</div>
+
+<script>
+    function processResult() {
+        var s = document.getElementById("seatNo").value.trim().toUpperCase();
+        var m = document.getElementById("mName").value.trim();
+        
+        if(s === "P140053") {
+            document.getElementById("inputSection").style.display = "none";
+            document.getElementById("resultArea").style.display = "block";
+            document.getElementById("dispSeat").innerText = s;
+        } else {
+            alert("Record Not Found! Please check Seat Number.");
+        }
+    }
+</script>
+
+</body>
+</html>
